@@ -1,0 +1,2 @@
+# java-codes
+hackerrank solutions
