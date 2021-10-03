@@ -1,2 +1,2 @@
 # java-codes
-hackerrank solutions
+All java competitive programming problems solutions are welcome.
