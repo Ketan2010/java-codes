@@ -1,10 +1,10 @@
 import java.util.Scanner;
  
 public class MatrixMultiplication{  
-  public static void main(String args[]){  
+  static Scanner s = new Scanner(System.in);
  
+  public static void main(String args[]){   
     int row1, col1, row2, col2;
-    Scanner s = new Scanner(System.in);
     System.out.print("Enter number of rows in first matrix:");
     row1 = s.nextInt();
     System.out.print("Enter number of columns in first matrix:");
@@ -18,21 +18,10 @@ public class MatrixMultiplication{
         System.out.println("Matrix multiplication is not possible");
     }
     else {
-        int a[][] = new int[row1][col1];
-        int b[][] = new int[row2][col2];
+        int a[][] = loadMatrix("A", row1, col1);
+        int b[][] = loadMatrix("B", row2, col2);
         int c[][] = new int[row1][col2];
- 
-        System.out.println("Enter values for matrix A : \n");
-        for (int i = 0; i < row1; i++) {
-            for (int j = 0; j < col1; j++) 
-                a[i][j] = s.nextInt();
-        }
-        System.out.println("Enter values for matrix B : \n");
-        for (int i = 0; i < row2; i++) {
-            for (int j = 0; j < col2; j++) 
-                b[i][j] = s.nextInt();
-        }
- 
+     
         System.out.println("Matrix multiplication is : \n");
         for(int i = 0; i < row1; i++) {    
             for(int j = 0; j < col2; j++){    
@@ -45,5 +34,16 @@ public class MatrixMultiplication{
             System.out.println();
         }    
     }
+  }
+ 
+  private static int[][] loadMatrix(String identifier, int rows, int cols) {
+     System.out.println("Enter values for matrix " + identifier + " : \n");
+     int [][] m = new int[rows][cols];
+     for (int i = 0; i < rows; i++) {
+         for (int j = 0; j < cols; j++) 
+             m[i][j] = s.nextInt();
+     }
+     
+     return m;
   }
 }
