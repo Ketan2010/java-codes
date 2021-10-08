@@ -1,43 +1,59 @@
 import java.util.Scanner;
 public class MatrixAddition
 {
+  static Scanner in = new Scanner(System.in);
+  
   public static void main(String args[])
   {
     int m, n, c, d;
-    Scanner in = new Scanner(System.in);
 
     System.out.println("Enter the number of rows and columns of matrix");
     m = in.nextInt();
     n = in.nextInt();
 
-    int first[][] = new int[m][n];
-    int second[][] = new int[m][n];
-    int sum[][] = new int[m][n];
+    int first[][] = loadMatrix('first', m, n);
+    int second[][] = loadMatrix('second', m, n);
+    int sum[][] = doMatrixSum(first, second);
 
-    System.out.println("Enter the elements of first matrix");
+    printMatrixSum(sum);   
+  }
+  
+  private static int[][] loadMatrix(String identifier, int rows, int cols) {
+    System.out.println("Enter the elements of " + identifier + " matrix: ");
+    
+    int[][] matrix = new int[rows][cols];
 
-    for (c = 0; c < m; c++)
-      for (d = 0; d < n; d++)
-        first[c][d] = in.nextInt();
+    for (int r = 0; r < rows; r++)
+      for (int c = 0; c < cols; c++)
+        matrix[r][c] = in.nextInt();
+    
+    return matrix;
+  }
+  
+  private static int[][] doMatrixSum(int[][] matrixA, int[][] matrixB) {
+    int rows = matrixA.length;
+    int cols = matrixA[0].length;
+    int sum[][] = new int[rows][cols];
+    
+    for (int r = 0; r < rows; c++)
+      for (int c = 0; c < cols; c++)
+        sum[r][c] = matrixA[r][c] + matrixB[r][c];
+    
+    return sum;
+  }
+  
+  private static void printMatrixSum(int[][] sum) {
+     int rows = sum.length;
+     int cols = sum[0].length;
+    
+     System.out.println("Sum of the matrices:");
 
-    System.out.println("Enter the elements of second matrix");
+     for (int r = 0; r < rows; r++)
+     {
+        for (int c = 0; c < cols; c++)
+          System.out.print(sum[r][c] + "\t");
 
-    for (c = 0 ; c < m; c++)
-      for (d = 0 ; d < n; d++)
-        second[c][d] = in.nextInt();
-
-    for (c = 0; c < m; c++)
-      for (d = 0; d < n; d++)
-        sum[c][d] = first[c][d] + second[c][d];  //replace '+' with '-' to subtract matrices
-
-    System.out.println("Sum of the matrices:");
-
-    for (c = 0; c < m; c++)
-    {
-      for (d = 0; d < n; d++)
-        System.out.print(sum[c][d] + "\t");
-
-      System.out.println();
-    }
+        System.out.println();
+     }
   }
 }
